@@ -1,14 +1,97 @@
-let scores = { A: 0, B: 0, C: 0 };
+let scores = {
+  fede: 0,
+  natura: 0,
+  cultura: 0
+};
+
 let currentQuestionIndex = 0;
 
 const questions = [
-  { text: "What's your favorite weekend activity?", options: { A: "Hiking 🥾", B: "Reading 📖", C: "Painting 🎨" } },
-  { text: "Pick a pet:", options: { A: "Dog 🐶", B: "Cat 🐱", C: "Bird 🐦" } },
-  { text: "Choose a vacation spot:", options: { A: "Mountains ⛰️", B: "Beach 🏖️", C: "City 🌆" } }
+  {
+    text: "Vivi a Termoli?",
+    options: [
+      {
+        text: "Sì",
+        points: {
+          fede: 0,
+          natura: 0,
+          cultura: 0
+        }
+      },
+      {
+        text: "No",
+        points: {
+          fede: 0,
+          natura: 0,
+          cultura: 0
+        }
+      }
+    ]
+  },
+  {
+    text: "<img src='https://tourismmedia.italia.it/is/image/mitur/2480X1000_termoli_destination'/>Quando sei in vacanza, la tua giornata ideale è:",
+    options: [
+      {
+        text: "All'insegna della calma e tranquillità",
+        points: {
+          fede: 1,
+          natura: 1,
+          cultura: 0
+        }
+      },
+      {
+        text: "Fatta per conoscere luoghi e persone",
+        points: {
+          fede: 0,
+          natura: 0,
+          cultura: 1
+        }
+      },
+      {
+        text: "Piena di cose nuove da scoprire",
+        points: {
+          fede: 0,
+          natura: 1,
+          cultura: 1
+        }
+      }
+    ]
+  },
+  {
+    text: "Vuoi staccare totalmente la spina e decidi di lasciare il telefono a casa e fare due passi. Dove vai?",
+    options: [
+      {
+        text: "In riva al mare: adoro il suono delle onde",
+        points: {
+          fede: 0,
+          natura: 1,
+          cultura: 0
+        }
+      },
+      {
+        text: "A perdermi tra i vicoli del centro storico",
+        points: {
+          fede: 0,
+          natura: 0,
+          cultura: 1
+        }
+      },
+      {
+        text: "Nel mio posto segreto!",
+        points: {
+          fede: 1,
+          natura: 0,
+          cultura: 0
+        }
+      }
+    ]
+  }
 ];
 
-function answerQuestion(category) {
-  scores[category]++;
+function answerQuestion(points) {
+  for (const [key, value] of Object.entries(points)) {
+    scores[key] += value;
+  }
   currentQuestionIndex++;
   updateQuiz();
 }
@@ -30,27 +113,45 @@ function renderQuestion() {
   let questionElement = document.createElement("div");
   questionElement.innerHTML = `<p class='text-lg font-semibold'>${question.text}</p>`;
 
-  Object.keys(question.options).forEach(category => {
+  question.options.forEach(option => {
     let button = document.createElement("button");
     button.className = "w-full mt-2 p-3 bg-blue-500 text-white rounded-lg";
-    button.innerText = question.options[category];
-    button.onclick = () => answerQuestion(category);
+    button.innerText = option.text;
+    button.onclick = () => answerQuestion(option.points);
     questionElement.appendChild(button);
-  });
+  })
 
   quizContainer.appendChild(questionElement);
 }
 
 function showResult() {
-  document.getElementById("quiz-container").classList.add('hidden');
+  const quizContainer = document.getElementById("quiz-container");
+  quizContainer.classList.add("text-center")
+  quizContainer.innerHTML = '';
+
+  quizContainer.appendChild(getResultHeader());
+  quizContainer.appendChild(getResultProfile());
+}
+
+function getResultHeader() {
+  let result = document.createElement("h2");
+  result.innerText = "Ecco la tua Termoli"
+  result.classList.add("text-xl", "font-bold");
+  return result
+}
+
+function getResultProfile() {
   let result = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
   let resultText = {
-    A: "You are an adventurous explorer! 🏔️",
-    B: "You are a calm and thoughtful person! 📚",
-    C: "You are a creative and artistic soul! 🎨"
+    fede: "Percorso fede",
+    natura: "Percorso natura",
+    cultura: "Percorso cultura"
   };
-  document.getElementById("result").innerText = resultText[result];
-  document.getElementById("result-container").classList.remove('hidden');
+
+  let resultp = document.createElement("p");
+  resultp.classList.add("mt-4", "text-lg", "font-semibold");
+  resultp.innerText = resultText[result]
+  return resultp;
 }
 
 window.onload = renderQuestion;
