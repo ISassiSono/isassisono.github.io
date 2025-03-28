@@ -69,7 +69,7 @@ function createImageQuestion(question) {
 
     const img = document.createElement("img");
     img.src = `../assets/${option.text}.jpg`;
-    img.classList.add("h-auto", "max-w-full", "rounded-lg")
+    img.classList.add("h-auto", "max-w-full", "rounded-lg", "hidden")
     img.onload = () => {
       pulser.remove()
       img.classList.remove("hidden")
