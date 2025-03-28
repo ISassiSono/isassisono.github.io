@@ -11,13 +11,15 @@
 
 <body class="bg-black flex justify-center items-center h-screen relative">
   <div class="video-wrapper" id="video-wrapper">
-    <video id="intro-video" playsinline muted>
+    <video id="intro-video" autoplay playsinline muted>
       <source src="assets/intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
 
-  <button id="start-button" onclick="window.location.href='/test'">Fai il test!</button>
+  <div id="start-button" onclick="window.location.href='/test'" class='text-lg font-semibold'>
+    Fai il test!
+  </div>
 
   <script>
     const video = document.getElementById("intro-video");
@@ -26,11 +28,7 @@
 
     // Make the video play with sound when clicked anywhere
     videoWrapper.addEventListener("click", () => {
-      if (video.paused) {
-        video.muted = false;
-        video.play();
-        videoWrapper.style.cursor = "default"; // Remove pointer cursor after playing
-      }
+      video.muted = false;
     });
 
     // Show quiz button after video ends
