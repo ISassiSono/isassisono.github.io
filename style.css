@@ -20,7 +20,7 @@ img {
 
 #progress {
   background-color: var(--sereno);
-  transition: width 0.5s ease-in-out, background-color 0.5s;
+  transition: width 0.5s ease-in-out;
 }
 
 #quiz-big-wrapper {
