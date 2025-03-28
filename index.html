@@ -4,20 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Che Termoli sei?</title>
+  <title>Welcome</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="./questions.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-gray-100 flex justify-center items-center h-screen">
-  <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-lg">
-    <div class="w-full bg-gray-300 rounded-full h-2 mb-4">
-      <div id="progress" class="bg-blue-500 h-2 rounded-full" style="width: 0%;"></div>
-    </div>
-
-    <div id="quiz-container"></div>
-
+<body class="bg-black flex justify-center items-center h-screen relative">
+  <div class="video-wrapper" id="video-wrapper">
+    <video id="intro-video" playsinline muted>
+      <source src="assets/intro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
+
+  <button id="start-button" onclick="window.location.href='/test'">Fai il test!</button>
+
+  <script>
+    const video = document.getElementById("intro-video");
+    const videoWrapper = document.getElementById("video-wrapper");
+    const startButton = document.getElementById("start-button");
+
+    // Make the video play with sound when clicked anywhere
+    videoWrapper.addEventListener("click", () => {
+      if (video.paused) {
+        video.muted = false;
+        video.play();
+        videoWrapper.style.cursor = "default"; // Remove pointer cursor after playing
+      }
+    });
+
+    // Show quiz button after video ends
+    video.addEventListener("ended", () => {
+      startButton.classList.add("show");
+    });
+  </script>
 </body>
 
 </html>

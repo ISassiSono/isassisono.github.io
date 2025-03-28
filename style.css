@@ -1,0 +1,105 @@
+:root {
+  --casetta: #fdf4e7;
+  --belvedere: #37a098;
+  --trabucco: #41312b;
+  --sereno: #9ec1e7;
+  --santanna: #ffe8be;
+  --pietrascura: #a78169;
+  --marmo: #e88876;
+  --giallone: #ffde4a;
+}
+
+body {
+  background: rgb(232, 136, 118);
+  background: linear-gradient(0deg, #e88876 0%, #9ec1e7 100%);
+}
+
+img {
+  cursor: pointer;
+}
+
+#progress {
+  background-color: var(--sereno);
+  transition: width 0.5s ease-in-out, background-color 0.5s;
+}
+
+#quiz-big-wrapper {
+  background-color: var(--casetta);
+}
+
+#question-text {
+  color: var(--trabucco);
+}
+
+button {
+  background-color: var(--belvedere) !important;
+  color: var(--casetta) !important;
+}
+
+.image-placeholder {
+  width: 192px;
+  /* Set a fixed width or match your image size */
+  height: 192px;
+  /* Set a fixed height */
+  background-color: #ccc;
+  /* Gray background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a loading effect */
+.image-placeholder.loading::after {
+  content: "Loading...";
+  font-size: 14px;
+  color: white;
+  position: absolute;
+}
+
+/* Initially hide the image */
+.hidden {
+  display: none;
+}
+
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: relative;
+  cursor: pointer;
+  /* Show clickable cursor */
+}
+
+video {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+/* Centered "Start Quiz" button */
+#start-button {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#start-button.show {
+  display: block;
+  opacity: 1;
+}
