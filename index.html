@@ -7,6 +7,7 @@
   <title>Welcome</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="intro.js"></script>
 </head>
 
 <body class="bg-black flex justify-center items-center h-screen relative">
@@ -17,25 +18,12 @@
     </video>
   </div>
 
-  <div id="start-button" onclick="window.location.href='/test'" class='text-lg font-semibold'>
-    Fai il test!
+  <div id="start-button" role="status"
+    class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
+    <div class='text-lg font-semibold'>
+      tap for sound
+    </div>
   </div>
-
-  <script>
-    const video = document.getElementById("intro-video");
-    const videoWrapper = document.getElementById("video-wrapper");
-    const startButton = document.getElementById("start-button");
-
-    // Make the video play with sound when clicked anywhere
-    videoWrapper.addEventListener("click", () => {
-      video.muted = false;
-    });
-
-    // Show quiz button after video ends
-    video.addEventListener("ended", () => {
-      startButton.classList.add("show");
-    });
-  </script>
 </body>
 
 </html>

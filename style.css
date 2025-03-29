@@ -84,22 +84,18 @@ video {
 
 /* Centered "Start Quiz" button */
 #start-button {
-  display: none;
+  display: block;
+  opacity: 1;
   position: absolute;
-  top: 50%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 12px 24px;
-  font-size: 52px;
+  font-size: 18px;
   background-color: transparent !important;
   color: var(--trabucco) !important;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
-}
-
-#start-button.show {
-  display: block;
-  opacity: 1;
 }
