@@ -27,8 +27,14 @@ img {
   background-color: var(--casetta);
 }
 
-#question-text {
+#question-text,
+#result-text {
+  padding: 6px;
   color: var(--trabucco);
+}
+
+#language-switch {
+  background-color: #41312bb2 !important;
 }
 
 button {
@@ -36,29 +42,6 @@ button {
   color: var(--casetta) !important;
 }
 
-.image-placeholder {
-  width: 192px;
-  /* Set a fixed width or match your image size */
-  height: 192px;
-  /* Set a fixed height */
-  background-color: #ccc;
-  /* Gray background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Add a loading effect */
-.image-placeholder.loading::after {
-  content: "Loading...";
-  font-size: 14px;
-  color: white;
-  position: absolute;
-}
-
-/* Initially hide the image */
 .hidden {
   display: none;
 }
@@ -72,7 +55,6 @@ button {
   background-color: black;
   position: relative;
   cursor: pointer;
-  /* Show clickable cursor */
 }
 
 video {
@@ -82,20 +64,22 @@ video {
   height: auto;
 }
 
-/* Centered "Start Quiz" button */
-#start-button {
-  display: block;
+#start-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   opacity: 1;
   position: absolute;
-  top: 5%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 12px 24px;
   font-size: 18px;
-  background-color: transparent !important;
-  color: var(--trabucco) !important;
+  background-color: #41312b80 !important;
+  color: var(--casetta) !important;
   border: none;
-  border-radius: 8px;
+  border-radius: 100px;
   cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
 }

@@ -1,5 +1,23 @@
 import { questions } from './questions.js';
 
+const finalText = {
+  it: "La tua Termoli è",
+  en: "Your Termoli is"
+}
+
+const resultText = {
+  it: {
+    fede: "Sprituale",
+    natura: "Vista mare",
+    cultura: "Tra passato e presente"
+  },
+  en: {
+    fede: "Spiritual",
+    natura: "Sea view",
+    cultura: "Between the past and the present"
+  }
+};
+
 let scores = {
   fede: 0,
   natura: 0,
@@ -7,6 +25,7 @@ let scores = {
 };
 
 let currentQuestionIndex = 0;
+let currentLanguage = "it";
 
 function answerQuestion(points) {
   for (const [key, value] of Object.entries(points)) {
@@ -18,10 +37,10 @@ function answerQuestion(points) {
 
 function updateQuiz() {
   const progressBar = document.getElementById("progress");
-  const progressBarPercent = ((currentQuestionIndex / questions.length) * 100)
+  const progressBarPercent = (((currentQuestionIndex - 1) / (questions[currentLanguage].length - 1)) * 100)
   progressBar.style.width = progressBarPercent + "%";
 
-  if (currentQuestionIndex < questions.length) {
+  if (currentQuestionIndex < questions[currentLanguage].length) {
     renderQuestion();
   } else {
     showResult();
@@ -32,7 +51,7 @@ async function renderQuestion() {
   const quizContainer = document.getElementById("quiz-container");
   quizContainer.innerHTML = "";
 
-  let question = questions[currentQuestionIndex];
+  let question = questions[currentLanguage][currentQuestionIndex];
 
   let isImageQuestion = question.images;
 
@@ -58,12 +77,11 @@ async function createImageQuestion(question) {
   options.forEach(async (option) => {
     const container = document.createElement("div");
 
-    // Fetch pulser template
     const pulser = await loadPulserTemplate();
     container.appendChild(pulser);
 
     const img = document.createElement("img");
-    img.src = `../assets/${option.text}.jpg`;
+    img.src = `/assets/${option.text}.jpg`;
     img.classList.add("h-auto", "max-w-full", "rounded-lg", "hidden");
 
     img.onload = () => {
@@ -113,30 +131,37 @@ function showResult() {
   const quizContainer = document.getElementById("quiz-container");
   quizContainer.classList.add("text-center")
   quizContainer.innerHTML = '';
+  let resultDiv = document.createElement("div");
+  resultDiv.id = "result-text"
 
-  quizContainer.appendChild(getResultHeader());
-  quizContainer.appendChild(getResultProfile());
+  resultDiv.appendChild(getResultHeader())
+  resultDiv.appendChild(getResultProfile())
+
+  quizContainer.appendChild(resultDiv);
 }
 
 function getResultHeader() {
   let result = document.createElement("h2");
-  result.innerText = "La tua Termoli è"
+  result.innerText = finalText[currentLanguage];
   result.classList.add("text-xl", "font-bold");
   return result
 }
 
 function getResultProfile() {
   let result = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-  let resultText = {
-    fede: "Sprituale",
-    natura: "Vista mare",
-    cultura: "Tra passato e presente"
-  };
 
   let resultp = document.createElement("p");
   resultp.classList.add("mt-4", "text-lg", "font-semibold");
-  resultp.innerText = resultText[result]
+  resultp.innerText = resultText[currentLanguage][result]
   return resultp;
 }
+
+function toggleLanguage() {
+  currentLanguage = currentLanguage === "en" ? "it" : "en";
+  updateQuiz();
+}
+
+document.getElementById("language-switch")
+  .addEventListener("click", toggleLanguage);
 
 window.onload = renderQuestion;
