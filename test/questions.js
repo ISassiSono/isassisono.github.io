@@ -127,9 +127,10 @@ export const questions = {
     },
     {
       text: "Scegli la specialità locale che ti piacerebbe provare:",
+      images: true,
       options: [
         {
-          text: "U vredette",
+          text: "Cibi/cibo_1",
           points: {
             fede: 0,
             natura: 0,
@@ -137,7 +138,7 @@ export const questions = {
           }
         },
         {
-          text: "Sécce e 'pisille",
+          text: "Cibi/cibo_4",
           points: {
             fede: 0,
             natura: 0,
@@ -145,7 +146,7 @@ export const questions = {
           }
         },
         {
-          text: "'U scescille",
+          text: "Cibi/cibo_3",
           points: {
             fede: 0,
             natura: 1,
@@ -153,7 +154,7 @@ export const questions = {
           }
         },
         {
-          text: "I pulepe 'mbregatorie",
+          text: "Cibi/cibo_2",
           points: {
             fede: 1,
             natura: 0,
@@ -497,9 +498,10 @@ export const questions = {
     },
     {
       text: "Choose a local specialty you'd like to try:",
+      images: true,
       options: [
         {
-          text: "U vredette",
+          text: "Cibi/cibo_1",
           points: {
             fede: 0,
             natura: 0,
@@ -507,7 +509,7 @@ export const questions = {
           }
         },
         {
-          text: "Sécce e 'pisille (Cuttlefish and peas)",
+          text: "Cibi/cibo_4",
           points: {
             fede: 0,
             natura: 0,
@@ -515,7 +517,7 @@ export const questions = {
           }
         },
         {
-          text: "'U scescille (Cheese and egg dumpling)",
+          text: "Cibi/cibo_3",
           points: {
             fede: 0,
             natura: 1,
@@ -523,7 +525,7 @@ export const questions = {
           }
         },
         {
-          text: "I pulepe 'mbregatorie (Stuffed octopus)",
+          text: "Cibi/cibo_2",
           points: {
             fede: 1,
             natura: 0,
